@@ -144,6 +144,32 @@ public class Consultas {
         }
     }
     
+    public static int getNumRows(String sql) {
+        return getNumRows(sql, false);
+    }
+    
+    public static int getNumRows(String sql, boolean nombreColumna) {
+        try {
+            return getFromDB(sql, nombreColumna).size();
+        } catch (Exception e) {
+            System.out.println("Exception : " + e.getMessage());
+            return -1;
+        }
+    }
+    
+    public static int getNumColumns(String sql) {
+        return getNumColumns(sql, false);
+    }
+    
+    public static int getNumColumns(String sql, boolean nombreColumna) {
+        try {
+            return getFromDB(sql, nombreColumna).get(0).size();
+        } catch (Exception e) {
+            System.out.println("Exception : " + e.getMessage());
+            return -1;
+        }
+    }
+    
     public static int getLastIdTableDB(String sql) {
         try {
             try {
