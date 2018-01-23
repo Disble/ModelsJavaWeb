@@ -3,13 +3,15 @@
     Created on : 20-ene-2018, 22:08:55
     Author     : Disble
 --%>
+<%@page import="com.model.ccr.TablaSQL"%>
 <%@page import="com.model.ccr.Consultas"%>
 <%@page import="com.model.ccr.Reportes"%>
 <%@page import="java.util.ArrayList"%>
 <%  String sql = "INSERT INTO ECUACIONES2GRADO(idU, imaginario, discriminante) VALUES(2,15,-12345);";
     boolean guardado = Consultas.insertarDB(sql); // Retorna false si falla la consulta a la BD
     sql = "SELECT * FROM USUARIO;";
-    ArrayList<ArrayList<Object>> resp = Consultas.getFromDB(sql, true); // Retorna null si falla la consulta a BD
+    TablaSQL tabla = Consultas.getFromDB(sql, true); // Retorna null si falla la consulta a BD
+    ArrayList<ArrayList<Object>> resp = tabla.getData();
     int lastId = Consultas.getLastIdTableDB("SELECT nombreU, passU FROM USUARIO");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -49,7 +51,7 @@
         <%=Reportes.reporteHTML("SELECT * FROM ECUACIONES2GRADO;", true)%>
         <p>Retorna una fila de una tabla : 
         <%
-            Object[] fila = Consultas.getRowFromTable("SELECT * FROM USUARIO", 1, true);
+            Object[] fila = tabla.getRow(0);
             for (Object col : fila) {
         %>
         <%=col%>,
@@ -57,7 +59,7 @@
                 }
         %>
         </p>
-        <p>Retorna una celda de una tabla : <%=Consultas.getCellFromTable("SELECT * FROM USUARIO", 1, 1)%></p>
-        <p>Retorna una celda llamando el nombre de una columna de una tabla : <%=Consultas.getCellFromTable("SELECT * FROM USUARIO", 2, "idU")%></p>
+        <p>Retorna una celda de una tabla : <%=tabla.getCell(1,1)%></p>
+        <p>Retorna una celda llamando el nombre de una columna de una tabla : <%=tabla.getCell(2, "idU")%></p>
     </body>
 </html>

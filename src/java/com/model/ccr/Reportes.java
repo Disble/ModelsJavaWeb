@@ -18,11 +18,11 @@ public class Reportes {
     }
     
     public static ArrayList<ArrayList<Object>> reporteArray(String sql) {
-        return Consultas.getFromDB(sql);
+        return Consultas.getFromDB(sql).getData();
     }
     
     public static ArrayList<ArrayList<Object>> reporteArray(String sql, boolean nombreColumnas) {
-        return Consultas.getFromDB(sql);
+        return Consultas.getFromDB(sql).getData();
     }
     
     public static String reporteHTML(String sql) {
@@ -30,7 +30,7 @@ public class Reportes {
     }
     
     public static String reporteHTML(String sql, boolean nombreColumnas) {
-        ArrayList<ArrayList<Object>> consulta = Consultas.getFromDB(sql, nombreColumnas);
+        ArrayList<ArrayList<Object>> consulta = Consultas.getFromDB(sql, nombreColumnas).getData();
         if (consulta != null) {
             String reporte = "";
             reporte += "<table class=\"reporte\">";
