@@ -5,7 +5,7 @@
 	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	 version="3.1">
     <welcome-file-list>
-        <welcome-file>consultas.jsp</welcome-file>
+        <welcome-file>tutorial.jsp</welcome-file>
     </welcome-file-list>
     <session-config>
         <session-timeout>

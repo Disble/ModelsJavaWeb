@@ -126,24 +126,6 @@ CREATE TABLE CMAGICO(
 INSERT INTO USUARIO VALUES('admin','admin', 1)
 INSERT INTO USUARIO VALUES('user', 'user', 0)
 
-SELECT * FROM USUARIO
-
--- Figuras Geometricas
-INSERT INTO FIGURASGEO VALUES(2)
-INSERT INTO FIGURASGEO VALUES(2)
-
-SELECT * FROM FIGURASGEO;
-
---Figura Cuadrado
--- Estado mover
--- 0 = No movido
--- 1 = Movido
-INSERT INTO CUADRADO(idFG, lado, area, perimetro,mover) VALUES(1, 15.0, 225.0, 60.0, 0)
-INSERT INTO CUADRADO(idFG, lado, mover, coorXM, coorYM) VALUES(2, 25.0, 1, 5, 6)
-
---DELETE FROM CUADRADO
---WHERE idFG = 1
-
 SELECT * FROM USUARIO;
 SELECT * FROM ECUACIONES2GRADO;
 SELECT * FROM CUADRADO;
@@ -152,17 +134,6 @@ SELECT * FROM CIRCUNFERENCIA
 SELECT * FROM ELIPSE;
 SELECT * FROM TRIANGULOREC;
 SELECT * FROM LINEA;
-
--- Consulta si no mueve
-SELECT u.nombreU, c.lado, c.perimetro, c.area, c.mover
-FROM USUARIO u, FIGURASGEO fg, CUADRADO c
-WHERE u.idU=fg.idU AND fg.idFG=c.idFG AND c.mover=0
-
---Consulta si mueve
-SELECT u.nombreU, c.mover, c.coorXM, c.coorYM
-FROM USUARIO u, FIGURASGEO fg, CUADRADO c
-WHERE u.idU=fg.idU AND fg.idFG=c.idFG AND c.mover=1
-
 
 SELECT rolU FROM USUARIO WHERE nombreU='admin' AND passU='admin'
 
