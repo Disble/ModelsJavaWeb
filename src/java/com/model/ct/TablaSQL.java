@@ -96,7 +96,7 @@ public class TablaSQL {
     
     public Object getCell(int fila, String columna) {
         try {
-            if (tabla != null && fila > 0) {
+            if (tabla != null && fila >= 0) {
                 if (!cabecera) fila++;
                 int nombres = tabla.get(0).indexOf(columna);
                 ArrayList<Object> row = tabla.get(fila);
