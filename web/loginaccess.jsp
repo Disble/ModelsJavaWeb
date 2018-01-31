@@ -1,4 +1,4 @@
-<%@page import="com.model.ccr.Consultas"%>
+<%@page import="com.model.ct.TablaSQL"%>
 <%@page import="com.model.sl.Sesiones"%>
 <%
         String user = request.getParameter("user");
@@ -10,7 +10,8 @@
         Sesiones sesion =  new Sesiones(request.getSession()); // Esta clase va a controlar la sesion desde ahora
             
         String sql = "SELECT idU, rolU FROM USUARIO WHERE nombreU='" + user + "' AND passU='" + pass + "';";
-        Object[] resp = Consultas.getRowFromTable(sql, 0); // Retorna un array con la primera fila
+        TablaSQL tsql = new TablaSQL(sql);
+        Object[] resp = tsql.getRow(0); // Retorna un array con la primera fila
 
         if (resp != null) {
             idU = (Integer) resp[0];
