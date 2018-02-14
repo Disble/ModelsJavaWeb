@@ -55,6 +55,10 @@ public class Sesiones {
         }
         return true;
     }
+    
+    public void setAttribute(String nombre, Object valor) {
+        sesion.setAttribute(nombre, valor);
+    }
         
     public boolean validarAdmin() {
         return validar(levels[0]);
@@ -117,5 +121,13 @@ public class Sesiones {
     
     public int getNivel() {
         return (Integer) sesion.getAttribute("nivel");
+    }
+    
+    public Object getAttribute(String nombre) {
+        return sesion.getAttribute(nombre);
+    }
+    
+    public void removeAttribute(String nombre) {
+        sesion.removeAttribute(nombre);
     }
 }
