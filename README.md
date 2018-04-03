@@ -57,7 +57,7 @@ El anterior ejemplo nos mostró como ingresar datos a una base de datos, pero Ta
 
 Para recuperar datos de un base de datos usaremos inicializaremos un objeto TablaSQL.
 
-````java
+```java
 String sql = "SELECT * FROM USUARIO";
 TablaSQL tsql = new TablaSQL(sql, true);
 ```
@@ -74,7 +74,7 @@ reporteHTML()
 
 Ejemplo:
 
-````java
+```java
 tsql.reporteHTML(); // retorna un String HTML
 ```
 
@@ -86,7 +86,7 @@ reporteCSS()
 
 Ejemplo:
 
-````java
+```java
 tsql.reporteCSS(); // retorna un String HTML con etiqueta style 
 tsql.reporteHTML(); // retorna un String HTML
 ```
@@ -101,7 +101,6 @@ getRow(int fila) // retorna un Object[] de una sola fila
 getCell(int fila, int columna) /* ó */ getCell(int fila, String columna) // retorna una celda de la tabla
 getNumRows() // retorna el numero de filas de la tabla
 getNumColumns() // retorna el numero de columnas de la tabla
-
 ```
 
 Veamos estos métodos de forma separada.
@@ -110,7 +109,7 @@ Veamos estos métodos de forma separada.
 
 Uno de los métodos más importantes es `getData()` que devuelve un doble ArrayList.
 
-````java
+```java
 ArrayList<ArrayList<Object>> tabla = tsql.getData();
 ```
 
@@ -155,13 +154,13 @@ Gracias por leer hasta el final y hasta otra.
 
 > Nota: Este mismo tutorial se encuentra en un jsp llamado `tutorial.jsp` dentro del proyecto. ¡Este tutorial contiene codigo jsp funcional!
 
- 	
+
 ### Guía de instalación
 ---
 
 Se puede **descargar como un zip** directamente desde la pagina o utilizando git con los siguiente comandos.
 
-```git
+```bash
 git clone https://gitlab.com/Disble/ModelsJavaWeb.git
 cd ModelsJavaWeb
 ```
@@ -205,7 +204,7 @@ CREATE TABLE USUARIO(
 ### Cómo contribuir
 ---
 
-Este proyecto esta abierto a contribuciones, tanto en código como documentación.
+Este proyecto esta abierto a contribuciones, se puede enviar `pull request` tanto para código como documentación.
 
 ### Autor/es
 ---
