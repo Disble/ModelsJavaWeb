@@ -17,7 +17,10 @@ public class Conexion {
     private static Connection conn;
     private Conexion(){
     }
-    
+    /**
+     * Abre la conexión de la base de datos.
+     * @return Objeto con la conexión abierta de la base de datos.
+     */
     static public Connection abrir(){
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
@@ -31,6 +34,9 @@ public class Conexion {
         return conn;
     }
     
+    /**
+     * Cierra la conexión de la base de datos.
+     */
     static public void cerrar(){
         try {
             conn.close();

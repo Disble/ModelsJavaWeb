@@ -22,11 +22,25 @@ public class TablaSQL {
     private static Statement stmt;
     private static ResultSet rs;
     
+    /**
+     * Constructor de la clase. Recibe un query con una consulta para la base de
+     * datos. Su principal función es la de guardar todos los datos de la tabla
+     * a consultar en un objeto facilmente manejable.
+     * @param sql Query con la consulta a la base de datos.
+     */
     public TablaSQL(String sql) {
         this.tabla = getFromDB(sql);
         this.cabecera = false;
     }
     
+    /**
+     *Constructor de la clase. Recibe un query con una consulta para la base de
+     * datos. Su principal función es la de guardar todos los datos de la tabla
+     * a consultar en un objeto facilmente manejable.
+     * @param sql Query con la consulta a la base de datos.
+     * @param cabecera Valor booleano que indica si el objeto guarda o no la
+     * cabecera de la tabla (nombres de columnas).
+     */
     public TablaSQL(String sql, boolean cabecera) {
         this.tabla = getFromDB(sql);
         this.cabecera = cabecera;
@@ -72,6 +86,10 @@ public class TablaSQL {
         }
     }
     
+    /**
+     * Retorna el número de columnas de la tabla.
+     * @return El número de columnas de la tabla. En caso de error retorna -1.
+     */
     public int getNumColumns() {
         try {
             return tabla.get(0).size();
@@ -81,6 +99,10 @@ public class TablaSQL {
         }
     }
     
+    /**
+     * Retorna el número de filas de la tabla.
+     * @return El número de filas de la tabla. En caso de error retorna -1.
+     */
     public int getNumRows() {
         try {
             if (cabecera) {
@@ -94,6 +116,14 @@ public class TablaSQL {
         }
     }
     
+    /**
+     * Obtiene una celda de la tabla, se necesita el fila y la columna de la 
+     * celda buscada.
+     * @param fila Número de la fila a buscar.
+     * @param columna Nombre de la columna a buscar.
+     * @return {@link Object} con la celda de la tabla especificada.
+     * En caso de error retorna {@link Null}.
+     */
     public Object getCell(int fila, String columna) {
         try {
             if (tabla != null && fila >= 0) {
@@ -110,6 +140,14 @@ public class TablaSQL {
         }
     }
     
+    /**
+     * Obtiene una celda de la tabla, se necesita el fila y la columna de la 
+     * celda buscada.
+     * @param fila Número de la fila a buscar.
+     * @param columna Número de la columna a buscar.
+     * @return {@link Object} con la celda de la tabla especificada.
+     * En caso de error retorna {@link Null}.
+     */
     public Object getCell(int fila, int columna) {
         try {
             if (tabla != null && fila >= 0 && columna >= 0) {
@@ -124,6 +162,12 @@ public class TablaSQL {
         }
     }
     
+    /**
+     * Obtiene una fila completa de la tabla.
+     * @param fila Número de la fila de la tabla.
+     * @return Array {@link Object} con la fila de la tabla especificada. 
+     * En caso de error retorna {@link Null}.
+     */
     public Object[] getRow(int fila) {
         try {
             if (tabla != null && fila >= 0) {
@@ -138,6 +182,11 @@ public class TablaSQL {
         }
     }
     
+    /**
+     * Obtiene un doble array con toda la información de la tabla.
+     * @return Un doble {@link ArrayList} del tipo {@link Object} con toda la 
+     * información de la tabla. En caso de error retorna {@link Null}.
+     */
     public ArrayList<ArrayList<Object>> getData() {
         try {
             if (cabecera) {
@@ -156,6 +205,10 @@ public class TablaSQL {
         }
     }
     
+    /**
+     * Imprime en el HTML una tabla con todos los datos de la tabla.
+     * @return {@link String} en formato HTML.
+     */
     public String reporteHTML() {
         if (tabla != null) {
             String reporte = "";
@@ -175,6 +228,11 @@ public class TablaSQL {
         }
     }
     
+    /**
+     * Imprime un tag css con estilos css para dar formato a
+     * {@link com.model.ct.TablaSQL#reporteHTML()}.
+     * @return {@link String} en formato HTML.
+     */
     public String reporteCSS() {
         if (cabecera)
             return reportesCSS(2);
@@ -182,6 +240,15 @@ public class TablaSQL {
             return reportesCSS(1);
     }
     
+    /**
+     * Imprime un tag css con estilos css para dar formato a 
+     * {@link com.model.ct.TablaSQL#reporteHTML()}. 
+     * @param tipoReporte Integer con dos posibles valores. 1 y 2: 1 es para 
+     * muestra un estilo simple sin colores. 2 muestra un estilo más trabajado
+     * con colores (aqua).
+     * @return {@link String} en formato HTML. En caso de error retorna el valor
+     * por defecto 1.
+     */
     public String reportesCSS(int tipoReporte) {
         switch(tipoReporte) {
             case 1:
@@ -235,6 +302,12 @@ public class TablaSQL {
         }
     }
     
+    /**
+     * Método estático que permite hacer consultas rápidas de inserción en la 
+     * base de datos.
+     * @param sql Query con la consulta a la base de datos.
+     * @return {@link Boolean} que confirma la consulta se ejecutó con exito.
+     */
     public static boolean insertarDB(String sql) {
         try {
             try {
@@ -257,6 +330,12 @@ public class TablaSQL {
         }
     }
     
+    /**
+     * Método estático cuya función es buscar el último Id de un tabla.
+     * @param sql Query con la consulta para buscar el último Id.
+     * @return El número del último Id encontrado. En caso de error retorna 
+     * -1.
+     */
     public static int getLastIdTableDB(String sql) {
         try {
             try {
